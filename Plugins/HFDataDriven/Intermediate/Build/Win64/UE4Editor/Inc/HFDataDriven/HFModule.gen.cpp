@@ -31,6 +31,11 @@ void EmptyLinkFunctionForGeneratedCodeHFModule() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ModuleIndex_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_ModuleIndex;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -47,6 +52,16 @@ void EmptyLinkFunctionForGeneratedCodeHFModule() {}
 		{ "ModuleRelativePath", "Public/HFCore/HFModule.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHFModule_Statics::NewProp_ModuleIndex_MetaData[] = {
+		{ "Category", "HFDataDriven" },
+		{ "ModuleRelativePath", "Public/HFCore/HFModule.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_UHFModule_Statics::NewProp_ModuleIndex = { "ModuleIndex", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHFModule, ModuleIndex), METADATA_PARAMS(Z_Construct_UClass_UHFModule_Statics::NewProp_ModuleIndex_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHFModule_Statics::NewProp_ModuleIndex_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UHFModule_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHFModule_Statics::NewProp_ModuleIndex,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UHFModule_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UHFModule>::IsAbstract,
 	};
@@ -56,11 +71,11 @@ void EmptyLinkFunctionForGeneratedCodeHFModule() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_UHFModule_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_UHFModule_Statics::PropPointers),
 		0,
 		0x00B000A4u,
 		METADATA_PARAMS(Z_Construct_UClass_UHFModule_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UHFModule_Statics::Class_MetaDataParams))
@@ -74,7 +89,7 @@ void EmptyLinkFunctionForGeneratedCodeHFModule() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UHFModule, 2274933812);
+	IMPLEMENT_CLASS(UHFModule, 4048028962);
 	template<> HFDATADRIVEN_API UClass* StaticClass<UHFModule>()
 	{
 		return UHFModule::StaticClass();

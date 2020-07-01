@@ -25,4 +25,13 @@ public:
 	void IterModuleBeginPlay(UHFModule* Module);
 	//递归Tick
 	void IterModuleTick(UHFModule* Module, float DeltaSeconds);
+
+	//提取所有模组到数组
+	void TotalGatherModule(FName ModType);
+	
+	void IterGatherModule(UHFModule* Module, TArray<UHFModule*>& GatherGrooup);
+
+protected:
+	//保存模组的数组，顺序与枚举相同
+	TArray<UHFModule*> ModuleGroup;
 };

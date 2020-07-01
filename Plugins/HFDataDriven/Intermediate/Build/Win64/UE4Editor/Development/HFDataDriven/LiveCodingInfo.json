@@ -5,35 +5,39 @@
 			"HFCommon.cpp.obj",
 			"HFDefine.cpp.obj",
 			"HFTypes.cpp.obj",
-			"HFCenterModule.cpp.obj",
-			"HFDriver.cpp.obj",
 			"HFMessage.cpp.obj",
 			"HFMMInterface.cpp.obj",
 			"HFModel.cpp.obj",
-			"HFModule.cpp.obj",
 			"HFWealth.cpp.obj",
 			"HFDataDriven.cpp.obj",
 			"HFActor.cpp.obj",
 			"HFObject.cpp.obj",
 			"HFOOInterface.cpp.obj",
-			"HFUserWidget.cpp.obj"
+			"HFUserWidget.cpp.obj",
+			"HFCenterModule.cpp.obj",
+			"HFDriver.cpp.obj",
+			"HFModule.cpp.obj",
+			"HFGCommon.cpp.obj",
+			"HFGTypes.cpp.obj"
 		],
 		"Module.HFDataDriven.gen.cpp.obj": [
 			"HFActor.gen.cpp.obj",
-			"HFCenterModule.gen.cpp.obj",
 			"HFCommon.gen.cpp.obj",
-			"HFDataDriven.init.gen.cpp.obj",
 			"HFDefine.gen.cpp.obj",
-			"HFDriver.gen.cpp.obj",
 			"HFMessage.gen.cpp.obj",
 			"HFMMInterface.gen.cpp.obj",
 			"HFModel.gen.cpp.obj",
-			"HFModule.gen.cpp.obj",
 			"HFObject.gen.cpp.obj",
 			"HFOOInterface.gen.cpp.obj",
 			"HFTypes.gen.cpp.obj",
 			"HFUserWidget.gen.cpp.obj",
-			"HFWealth.gen.cpp.obj"
+			"HFWealth.gen.cpp.obj",
+			"HFCenterModule.gen.cpp.obj",
+			"HFDataDriven.init.gen.cpp.obj",
+			"HFDriver.gen.cpp.obj",
+			"HFGCommon.gen.cpp.obj",
+			"HFGTypes.gen.cpp.obj",
+			"HFModule.gen.cpp.obj"
 		]
 	}
 }

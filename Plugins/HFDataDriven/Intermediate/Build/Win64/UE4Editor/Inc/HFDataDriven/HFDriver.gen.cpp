@@ -62,7 +62,9 @@ void EmptyLinkFunctionForGeneratedCodeHFDriver() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHFDriver_Statics::NewProp_ModuleType_MetaData[] = {
 		{ "Category", "HFDataDriven" },
+		{ "Comment", "//\xc4\xa3????\xd3\xa6??\xc3\xb6????????\n" },
 		{ "ModuleRelativePath", "Public/HFCore/HFDriver.h" },
+		{ "ToolTip", "\xc4\xa3????\xd3\xa6??\xc3\xb6????????" },
 	};
 #endif
 	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_AHFDriver_Statics::NewProp_ModuleType = { "ModuleType", nullptr, (EPropertyFlags)0x0010000000010001, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHFDriver, ModuleType), METADATA_PARAMS(Z_Construct_UClass_AHFDriver_Statics::NewProp_ModuleType_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AHFDriver_Statics::NewProp_ModuleType_MetaData)) };
@@ -114,7 +116,7 @@ void EmptyLinkFunctionForGeneratedCodeHFDriver() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHFDriver, 4171677467);
+	IMPLEMENT_CLASS(AHFDriver, 611926955);
 	template<> HFDATADRIVEN_API UClass* StaticClass<AHFDriver>()
 	{
 		return AHFDriver::StaticClass();
