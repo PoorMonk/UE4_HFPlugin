@@ -27,8 +27,13 @@ public:
 
 	virtual void ModuleTick(float DeltaSeconds);
 
+	void ChangeModuleType(FName ModuleType);
+
 public:
 	TArray<UHFModule*> ChildrenModules;
+
+	UPROPERTY(VisibleAnywhere, Category = "HFDataDriven")
+		int32 ModuleIndex;
 
 protected:
 	//数据模块指针

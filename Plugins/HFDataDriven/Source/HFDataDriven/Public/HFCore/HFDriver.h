@@ -22,6 +22,11 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
+#if WITH_EDITOR
+	//属性修改方法
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+#endif
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -33,6 +38,7 @@ public:
 	UPROPERTY(EditAnywhere, NoClear, BlueprintReadOnly, Category = "HFDataDriven")
 		UHFCenterModule* Center;
 
+	//模组对应的枚举类型名
 	UPROPERTY(EditDefaultsOnly, Category = "HFDataDriven")
 		FName ModuleType;
 

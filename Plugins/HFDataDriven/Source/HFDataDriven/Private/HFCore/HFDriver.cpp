@@ -26,9 +26,24 @@ void AHFDriver::PostInitializeComponents()
 	UHFCommon::Get()->InitDriver(this);
 	//在游戏运行之前进行一次模组ID的设定，在这里面会注册子模组到数组
 	Center->IterChangeModuleType(Center, ModuleType);
-
+	//指定完模组ID后收集模组到总数组
+	Center->TotalGatherModule(ModuleType);
+	//创建所有模组的模块
 	Center->IterCreateManager(Center);
 }
+
+#if WITH_EDITOR
+void AHFDriver::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+{
+	Super::PostEditChangeProperty(PropertyChangedEvent);
+
+	if (PropertyChangedEvent.Property && PropertyChangedEvent.Property->GetFName()
+		== GET_MEMBER_NAME_CHECKED(AHFDriver, ModuleType))
+	{
+		Center->IterChangeModuleType(Center, ModuleType);
+	}
+}
+#endif
 
 // Called when the game starts or when spawned
 void AHFDriver::BeginPlay()

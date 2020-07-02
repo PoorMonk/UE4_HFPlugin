@@ -73,7 +73,7 @@ void EmptyLinkFunctionForGeneratedCodeHFCenterModule() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UHFCenterModule, 1354440648);
+	IMPLEMENT_CLASS(UHFCenterModule, 4238732037);
 	template<> HFDATADRIVEN_API UClass* StaticClass<UHFCenterModule>()
 	{
 		return UHFCenterModule::StaticClass();

@@ -5,6 +5,7 @@
 
 void UHFCenterModule::IterChangeModuleType(UHFModule* Module, FName ModType)
 {
+	Module->ChangeModuleType(ModType);
 	for (int i = 0; i < Module->GetAttachChildren().Num(); ++i)
 	{
 		UHFModule* ChildModule = Cast<UHFModule>(Module->GetAttachChildren()[i]);
@@ -49,5 +50,40 @@ void UHFCenterModule::IterModuleTick(UHFModule* Module, float DeltaSeconds)
 	for (int i = 0; i < Module->ChildrenModules.Num(); ++i)
 	{
 		IterModuleTick(Module->ChildrenModules[i], DeltaSeconds);
+	}
+}
+
+void UHFCenterModule::TotalGatherModule(FName ModType)
+{
+	if (ModType.IsNone())
+	{
+		return;
+	}
+
+	//先获取所有的模组
+	TArray<UHFModule*> GatherModules;
+	IterGatherModule(this, GatherModules);
+
+	//获取枚举的元素数量
+	int32 ModuleNum = FindObject<UEnum>((UObject*)ANY_PACKAGE, *(ModType.ToString()), true)->GetMaxEnumValue();
+	//填充空对象到ModuleGroup
+	for (int i = 0; i < ModuleNum; ++i)
+	{
+		ModuleGroup.Push(nullptr);
+	}
+	//按模组ID填充模组到ModuleGroup
+	for (int i = 0; i < GatherModules.Num(); i++)
+	{
+		ModuleGroup[GatherModules[i]->ModuleIndex] = GatherModules[i];
+		HFH::Debug() << i << HFH::Endl();
+	}
+}
+
+void UHFCenterModule::IterGatherModule(UHFModule * Module, TArray<UHFModule*>& GatherGroup)
+{
+	GatherGroup.Push(Module);
+	for (int i = 0; i < Module->ChildrenModules.Num(); ++i)
+	{
+		IterGatherModule(Module->ChildrenModules[i], GatherGroup);
 	}
 }

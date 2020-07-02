@@ -4,6 +4,7 @@
 #include "HFCore/HFModule.h"
 #include "HFCore/HFModel.h"
 #include "HFCore/HFWealth.h"
+#include "HFCommon/HFCommon.h"
 
 // Sets default values for this component's properties
 UHFModule::UHFModule()
@@ -51,5 +52,14 @@ void UHFModule::ModuleTick(float DeltaSeconds)
 	Model->ModelTick(DeltaSeconds);
 	Wealth->WealthTick(DeltaSeconds);
 	Message->MessageTick(DeltaSeconds);
+}
+
+void UHFModule::ChangeModuleType(FName ModuleType)
+{
+	ModuleIndex = HFH::GetEnumIndexFromName(ModuleType.ToString(), GetFName());
+	if (ModuleIndex < 0)
+	{
+		HFH::Debug() << "Generate Module Index Error --> " << GetName() << HFH::Endl();
+	}
 }
 

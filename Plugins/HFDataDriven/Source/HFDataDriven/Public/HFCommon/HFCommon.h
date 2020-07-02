@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "HFDefine.h"
+#include "HFGame/HFGCommon.h"
 #include "HFCommon.generated.h"
 
 namespace HFH
@@ -42,6 +43,48 @@ namespace HFH
 	FORCEINLINE HFRecord& Endl()
 	{
 		return *HFRecord::Get();
+	}
+
+	//输入传入的Enum值对应的FString
+	template<typename TEnum>
+	FORCEINLINE FString GetEnumValueAsString(const FString& Name, TEnum Value)
+	{
+		const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, *Name, true);
+		if (!EnumPtr)
+		{
+			return FString("Invalid");
+		}
+		return EnumPtr->GetEnumName((int32)Value);
+	}
+
+	//输入传入的Enum值对应的FName
+	template<typename TEnum>
+	FORCEINLINE FString GetEnumValueAsName(const FString& Name, TEnum Value)
+	{
+		return FName(*GetEnumValueAsString<TEnum>(Name, Value));
+	}
+
+	//将传入的FName对应的Enum输出
+	template<typename TEnum>
+	FORCEINLINE TEnum GetEnumValueFromName(const FString& Name, FName Value)
+	{
+		const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, *Name, true);
+		if (!EnumPtr)
+		{
+			return TEnum(0);
+		}
+		return (TEnum)EnumPtr->GetIndexByName(Value);
+	}
+
+	//template<typename TEnum>
+	FORCEINLINE int32 GetEnumIndexFromName(const FString& Name, FName Value)
+	{
+		const UEnum* EnumPtr = FindObject<UEnum>((UObject*)ANY_PACKAGE, *Name, true);
+		if (!EnumPtr)
+		{
+			return -1;
+		}
+		return EnumPtr->GetIndexByName(Value);
 	}
 }
 
