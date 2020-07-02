@@ -9,6 +9,7 @@
 
 class UHFModel;
 class UHFWealth;
+class IHFOOInterface;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class HFDATADRIVEN_API UHFModule : public USceneComponent
@@ -28,6 +29,12 @@ public:
 	virtual void ModuleTick(float DeltaSeconds);
 
 	void ChangeModuleType(FName ModuleType);
+
+	//注册对象到数据模块
+	void RegisterObject(IHFOOInterface* ObjectInst);
+
+	//模组对象销毁自身
+	void ChildDestroy(FName ObjectName);
 
 public:
 	TArray<UHFModule*> ChildrenModules;

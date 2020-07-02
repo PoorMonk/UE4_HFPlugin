@@ -6,6 +6,8 @@
 #include "HFCore/HFModule.h"
 #include "HFCenterModule.generated.h"
 
+class IHFOOInterface;
+
 /**
  * 
  */
@@ -30,6 +32,8 @@ public:
 	void TotalGatherModule(FName ModType);
 	
 	void IterGatherModule(UHFModule* Module, TArray<UHFModule*>& GatherGrooup);
+
+	bool RegisterToModule(IHFOOInterface* Obj);
 
 protected:
 	//保存模组的数组，顺序与枚举相同

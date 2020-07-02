@@ -9,6 +9,8 @@
 
 #include "HFDriver.generated.h"
 
+class IHFOOInterface;
+
 UCLASS()
 class HFDATADRIVEN_API AHFDriver : public AActor
 {
@@ -21,6 +23,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void PostInitializeComponents() override;
+
+	//注册资源
+	bool RegisterToModule(IHFOOInterface* ObjectInst);
 
 #if WITH_EDITOR
 	//属性修改方法

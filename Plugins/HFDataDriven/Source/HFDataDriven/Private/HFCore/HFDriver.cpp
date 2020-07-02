@@ -32,6 +32,11 @@ void AHFDriver::PostInitializeComponents()
 	Center->IterCreateManager(Center);
 }
 
+bool AHFDriver::RegisterToModule(IHFOOInterface* ObjectInst)
+{
+	return Center->RegisterToModule(ObjectInst);
+}
+
 #if WITH_EDITOR
 void AHFDriver::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {

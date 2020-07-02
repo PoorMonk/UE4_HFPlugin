@@ -103,3 +103,43 @@ private:
 	FColor ShowColor;
 };
 #pragma endregion
+
+#pragma region LifeTimePart
+//生命周期
+UENUM()
+enum class EBaseObjectLife : uint8
+{
+	None = 0,
+	Init,
+	Loading,
+	Register,
+	Enable,
+	Disable,
+	UnRegister,
+	UnLoading
+};
+
+//对象状态
+UENUM()
+enum class EBaseObjectState : uint8
+{
+	Active = 0,		//激活状态
+	Stable,			//稳定状态
+	Destroy			//销毁状态
+};
+#pragma endregion
+
+#pragma region ReflectPart
+//对象调用协议
+UENUM()
+enum class EAgreementType : uint8
+{
+	SelfObject,			//跟传入的对象通信
+	OtherObject,		//跟传入的对象之外的对象通信
+	ClassOtherObject,	//跟传入的对象的相同类的其它对象通信
+	SelfClass,			//跟这个类的对象通信
+	OtherClass,			//跟其它类通信
+	All					//跟所有的对象通信
+};
+#pragma endregion
+

@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeHFObject() {}
 	HFDATADRIVEN_API UClass* Z_Construct_UClass_UHFObject();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
 	UPackage* Z_Construct_UPackage__Script_HFDataDriven();
+	HFDATADRIVEN_API UClass* Z_Construct_UClass_UHFOOInterface_NoRegister();
 // End Cross Module References
 	void UHFObject::StaticRegisterNativesUHFObject()
 	{
@@ -31,6 +32,7 @@ void EmptyLinkFunctionForGeneratedCodeHFObject() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+		static const UE4CodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -45,6 +47,9 @@ void EmptyLinkFunctionForGeneratedCodeHFObject() {}
 		{ "ModuleRelativePath", "Public/HFObject/HFObject.h" },
 	};
 #endif
+		const UE4CodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_UHFObject_Statics::InterfaceParams[] = {
+			{ Z_Construct_UClass_UHFOOInterface_NoRegister, (int32)VTABLE_OFFSET(UHFObject, IHFOOInterface), false },
+		};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UHFObject_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UHFObject>::IsAbstract,
 	};
@@ -55,11 +60,11 @@ void EmptyLinkFunctionForGeneratedCodeHFObject() {}
 		DependentSingletons,
 		nullptr,
 		nullptr,
-		nullptr,
+		InterfaceParams,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
 		0,
-		0,
+		UE_ARRAY_COUNT(InterfaceParams),
 		0x001000A0u,
 		METADATA_PARAMS(Z_Construct_UClass_UHFObject_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UHFObject_Statics::Class_MetaDataParams))
 	};
@@ -72,7 +77,7 @@ void EmptyLinkFunctionForGeneratedCodeHFObject() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UHFObject, 3366219629);
+	IMPLEMENT_CLASS(UHFObject, 979861687);
 	template<> HFDATADRIVEN_API UClass* StaticClass<UHFObject>()
 	{
 		return UHFObject::StaticClass();

@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "HFOOInterface.h"
 #include "HFObject.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class HFDATADRIVEN_API UHFObject : public UObject
+class HFDATADRIVEN_API UHFObject : public UObject, public IHFOOInterface
 {
 	GENERATED_BODY()
 	

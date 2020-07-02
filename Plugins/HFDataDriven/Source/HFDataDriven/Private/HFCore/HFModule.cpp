@@ -5,6 +5,7 @@
 #include "HFCore/HFModel.h"
 #include "HFCore/HFWealth.h"
 #include "HFCommon/HFCommon.h"
+#include "HFObject/HFOOInterface.h"
 
 // Sets default values for this component's properties
 UHFModule::UHFModule()
@@ -61,5 +62,16 @@ void UHFModule::ChangeModuleType(FName ModuleType)
 	{
 		HFH::Debug() << "Generate Module Index Error --> " << GetName() << HFH::Endl();
 	}
+}
+
+void UHFModule::RegisterObject(IHFOOInterface* ObjectInst)
+{
+	Model->RegisterObject(ObjectInst);
+	ObjectInst->AssignModule(this);
+}
+
+void UHFModule::ChildDestroy(FName ObjectName)
+{
+	Model->DestroyObject(ObjectName);
 }
 

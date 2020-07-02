@@ -7,6 +7,8 @@
 #include "HFMMInterface.h"
 #include "HFModel.generated.h"
 
+class IHFOOInterface;
+
 /**
  * 
  */
@@ -20,4 +22,40 @@ public:
 	virtual void ModelInit() {}
 	virtual void ModelBeginPlay() {}
 	virtual void ModelTick(float DeltaSeconds);
+
+	//注册对象到数据模块
+	void RegisterObject(IHFOOInterface* ObjectInst);
+
+	//销毁对象
+	void DestroyObject(FName ObjectName);
+
+	//批量销毁对象
+	void DestroyObject(EAgreementType Agreement, TArray<FName> TargetNameGroup);
+	//批量激活对象
+	void EnableObject(EAgreementType Agreement, TArray<FName> TargetNameGroup);
+	//批量失活对象
+	void DisableObject(EAgreementType Agreement, TArray<FName> TargetNameGroup);
+	//根据传入的对象名获取对象
+	void GetSelfObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup);
+	//根据传入的对象名获取对象名外的其它对象
+	void GetOtherObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup);
+
+
+protected:
+	//框架对象数组，key:ObjectName
+	TMap<FName, IHFOOInterface*> ObjectGroup;
+
+	//框架对象类集合，key:ClassName
+	TMap<FName, TArray<IHFOOInterface*>> ObjectClassGroup;
+
+	//等待生命周期的对象集
+	TArray<IHFOOInterface*> ObjectActiveGroup;
+	//需要运行Tick函数的对象集合
+	TArray<IHFOOInterface*> ObjectTickGroup;
+	//销毁生命周期的对象集
+	TArray<IHFOOInterface*> ObjectDestroyGroup;
+	//释放周期函数对象集合
+	TArray<IHFOOInterface*> ObjectReleaseGroup;
+	//预销毁对象（还处于激活状态，需要运行完才能销毁）
+	TArray<IHFOOInterface*> PreObjectDestroyGroup;
 };

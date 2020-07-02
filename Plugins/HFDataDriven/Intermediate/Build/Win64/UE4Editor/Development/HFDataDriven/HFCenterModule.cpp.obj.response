@@ -31,7 +31,7 @@
 /wd4838
 /we4668
 /I .
-/I D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Source\HFDataDriven\Private
+/I C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source\HFDataDriven\Private
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\CoreUObject
 /I Runtime
 /I Runtime\CoreUObject\Public
@@ -229,9 +229,9 @@
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\ClothingSystemRuntimeInterface
 /I Runtime\ClothingSystemRuntimeInterface\Public
 /I Runtime\AudioMixerCore\Public
-/I D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Inc\HFDataDriven
-/I D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Source
-/I D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Source\HFDataDriven\Public
+/I C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Inc\HFDataDriven
+/I C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source
+/I C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source\HFDataDriven\Public
 /I ThirdParty\PhysX3\PxShared\include
 /I ThirdParty\PhysX3\PxShared\include\cudamanager
 /I ThirdParty\PhysX3\PxShared\include\filebuf
@@ -257,16 +257,16 @@
 /I ThirdParty\PhysX3\APEX_1.4\shared\internal\include
 /I "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\INCLUDE"
 /I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\ucrt"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\shared"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\winrt"
-/FI"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Intermediate\Build\Win64\RaceCarEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Yu"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Intermediate\Build\Win64\RaceCarEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Intermediate\Build\Win64\RaceCarEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Source\HFDataDriven\Private\HFCore\HFCenterModule.cpp"
-/FI"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Development\HFDataDriven\Definitions.HFDataDriven.h"
-/Fo"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Development\HFDataDriven\HFCenterModule.cpp.obj"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"
+/FI"C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Intermediate\Build\Win64\RaceCarEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Yu"C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Intermediate\Build\Win64\RaceCarEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Intermediate\Build\Win64\RaceCarEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+"C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source\HFDataDriven\Private\HFCore\HFCenterModule.cpp"
+/FI"C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Development\HFDataDriven\Definitions.HFDataDriven.h"
+/Fo"C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Development\HFDataDriven\HFCenterModule.cpp.obj"
 /TP
 /GR-
 /W4

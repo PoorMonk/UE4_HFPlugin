@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.25807.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{E61E0901-F89D-4633-8739-03187C319126}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{15A76317-1091-4465-B784-FE3618DCE5E4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Games", "Games", "{855273A7-116D-413F-96E9-D9C9F72A644A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Games", "Games", "{B62D885F-0B4E-4030-9BFD-A95715B79B7A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RaceCar", "Intermediate\ProjectFiles\RaceCar.vcxproj", "{702B4ADA-49FC-408A-AA9B-E64AB146935F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UE4", "Intermediate\ProjectFiles\UE4.vcxproj", "{C7823F99-5667-4D5A-BED6-A349C3D5185B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Visualizers", "Visualizers", "{49BD944A-B28E-46D5-B93D-1AE9F19AC4D1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Visualizers", "Visualizers", "{9347D37E-1DC6-42A7-8B63-217E2406526B}"
 	ProjectSection(SolutionItems) = preProject
 		F:\UnrealEngine\UE_4.24\Engine\Extras\VisualStudioDebugging\UE4.natvis = F:\UnrealEngine\UE_4.24\Engine\Extras\VisualStudioDebugging\UE4.natvis
 	EndProjectSection
@@ -63,7 +63,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C7823F99-5667-4D5A-BED6-A349C3D5185B} = {E61E0901-F89D-4633-8739-03187C319126}
-		{702B4ADA-49FC-408A-AA9B-E64AB146935F} = {855273A7-116D-413F-96E9-D9C9F72A644A}
+		{C7823F99-5667-4D5A-BED6-A349C3D5185B} = {15A76317-1091-4465-B784-FE3618DCE5E4}
+		{702B4ADA-49FC-408A-AA9B-E64AB146935F} = {B62D885F-0B4E-4030-9BFD-A95715B79B7A}
 	EndGlobalSection
 EndGlobal

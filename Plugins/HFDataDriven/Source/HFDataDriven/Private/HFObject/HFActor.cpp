@@ -7,8 +7,15 @@
 AHFActor::AHFActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
+}
+
+void AHFActor::HFRelease()
+{
+	IHFOOInterface::HFRelease();
+
+	GetHFWorld()->DestroyActor(this);
 }
 
 // Called when the game starts or when spawned
@@ -16,12 +23,8 @@ void AHFActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//×Ô¶¯×¢²áµ½¿ò¼Ü
+	RegisterToModule(ModuleName, ObjectName, ClassName);
 }
 
-// Called every frame
-void AHFActor::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
 

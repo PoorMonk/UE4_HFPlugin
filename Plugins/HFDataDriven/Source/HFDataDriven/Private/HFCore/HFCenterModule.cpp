@@ -2,6 +2,7 @@
 
 
 #include "../Public/HFCore/HFCenterModule.h"
+#include "HFObject/HFOOInterface.h"
 
 void UHFCenterModule::IterChangeModuleType(UHFModule* Module, FName ModType)
 {
@@ -75,7 +76,7 @@ void UHFCenterModule::TotalGatherModule(FName ModType)
 	for (int i = 0; i < GatherModules.Num(); i++)
 	{
 		ModuleGroup[GatherModules[i]->ModuleIndex] = GatherModules[i];
-		HFH::Debug() << i << HFH::Endl();
+		//HFH::Debug() << i << HFH::Endl();
 	}
 }
 
@@ -86,4 +87,15 @@ void UHFCenterModule::IterGatherModule(UHFModule * Module, TArray<UHFModule*>& G
 	{
 		IterGatherModule(Module->ChildrenModules[i], GatherGroup);
 	}
+}
+
+bool UHFCenterModule::RegisterToModule(IHFOOInterface* Obj)
+{
+	if (Obj->GetModuleIndex() < ModuleGroup.Num() && ModuleGroup[Obj->GetModuleIndex()])
+	{
+		ModuleGroup[Obj->GetModuleIndex()]->RegisterObject(Obj);
+		return true;
+	}
+
+	return false;
 }
