@@ -1,5 +1,5 @@
 C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Development\HFDataDriven\Definitions.HFDataDriven.h
-C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source\HFDataDriven\Private\../Public/HFCore/HFDriver.h
+C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source\HFDataDriven\Public\HFCore/HFDriver.h
 c:\users\xnxs-yf-c\desktop\ue4\racecar\plugins\hfdatadriven\source\hfdatadriven\public\hfcore\HFCenterModule.h
 C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source\HFDataDriven\Public\HFCore/HFModule.h
 c:\users\xnxs-yf-c\desktop\ue4\racecar\plugins\hfdatadriven\source\hfdatadriven\public\hfcore\HFMessage.h
@@ -28,3 +28,15 @@ C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\W
 C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Inc\HFDataDriven\HFModule.generated.h
 C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Inc\HFDataDriven\HFCenterModule.generated.h
 C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Inc\HFDataDriven\HFDriver.generated.h
+F:\UnrealEngine\UE_4.24\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
+F:\UnrealEngine\UE_4.24\Engine\Source\Runtime\Engine\Classes\Kismet/KismetSystemLibrary.h
+F:\UnrealEngine\UE_4.24\Engine\Source\Runtime\Engine\Classes\Engine/CollisionProfile.h
+F:\UnrealEngine\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CollisionProfile.generated.h
+F:\UnrealEngine\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetSystemLibrary.generated.h
+F:\UnrealEngine\UE_4.24\Engine\Source\Runtime\Engine\Classes\Sound/DialogueTypes.h
+F:\UnrealEngine\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DialogueTypes.generated.h
+f:\unrealengine\ue_4.24\engine\source\runtime\engine\classes\kismet\GameplayStaticsTypes.h
+F:\UnrealEngine\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
+F:\UnrealEngine\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
+C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source\HFDataDriven\Public\HFObject/HFOOInterface.h
+C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Inc\HFDataDriven\HFOOInterface.generated.h

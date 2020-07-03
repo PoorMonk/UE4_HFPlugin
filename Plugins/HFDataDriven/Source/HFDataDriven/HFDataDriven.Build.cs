@@ -37,7 +37,10 @@ public class HFDataDriven : ModuleRules
 			{
 				"CoreUObject",
 				"Engine",
-				"Slate",
+                "PhysXVehicles",
+                "GameplayTasks",
+                "AIModule",
+                "Slate",
 				"SlateCore",
                 "UMG",
 				// ... add private dependencies that you statically link with here ...	

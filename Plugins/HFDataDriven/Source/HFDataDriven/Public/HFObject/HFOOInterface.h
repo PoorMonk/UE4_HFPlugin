@@ -26,6 +26,8 @@ class HFDATADRIVEN_API IHFOOInterface
 public:
 	//注册到框架
 	void RegisterToModule(FName ModName, FName ObjName = FName(), FName ClsName = FName());
+	//通过模组ID注册
+	void RegisterToModule(int32 ModuleIndex, FName ObjName = FName(), FName ClsName = FName());
 	//获取对象名
 	FName GetObjectName() const;
 	//获取类名
@@ -93,4 +95,8 @@ protected:
 
 	//对应模组的序号
 	int32 ModuleIndex;
+
+private:
+	void RegisterInit(FName ObjName = FName(), FName ClsName = FName());
+	void Register(int32 ModIndex);
 };

@@ -3,3 +3,11 @@
 
 #include "../Public/HFObject/HFObject.h"
 
+void UHFObject::HFRelease()
+{
+	IHFOOInterface::HFRelease();
+
+	RemoveFromRoot();
+
+	ConditionalBeginDestroy();
+}

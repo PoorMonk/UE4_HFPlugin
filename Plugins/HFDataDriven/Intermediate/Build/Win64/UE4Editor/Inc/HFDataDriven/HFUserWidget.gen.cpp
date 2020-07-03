@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeHFUserWidget() {}
 	HFDATADRIVEN_API UClass* Z_Construct_UClass_UHFUserWidget();
 	UMG_API UClass* Z_Construct_UClass_UUserWidget();
 	UPackage* Z_Construct_UPackage__Script_HFDataDriven();
+	HFDATADRIVEN_API UClass* Z_Construct_UClass_UHFOOInterface_NoRegister();
 // End Cross Module References
 	void UHFUserWidget::StaticRegisterNativesUHFUserWidget()
 	{
@@ -31,6 +32,7 @@ void EmptyLinkFunctionForGeneratedCodeHFUserWidget() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+		static const UE4CodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -45,6 +47,9 @@ void EmptyLinkFunctionForGeneratedCodeHFUserWidget() {}
 		{ "ModuleRelativePath", "Public/HFObject/HFUserWidget.h" },
 	};
 #endif
+		const UE4CodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_UHFUserWidget_Statics::InterfaceParams[] = {
+			{ Z_Construct_UClass_UHFOOInterface_NoRegister, (int32)VTABLE_OFFSET(UHFUserWidget, IHFOOInterface), false },
+		};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UHFUserWidget_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UHFUserWidget>::IsAbstract,
 	};
@@ -55,11 +60,11 @@ void EmptyLinkFunctionForGeneratedCodeHFUserWidget() {}
 		DependentSingletons,
 		nullptr,
 		nullptr,
-		nullptr,
+		InterfaceParams,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
 		0,
-		0,
+		UE_ARRAY_COUNT(InterfaceParams),
 		0x00B010A0u,
 		METADATA_PARAMS(Z_Construct_UClass_UHFUserWidget_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UHFUserWidget_Statics::Class_MetaDataParams))
 	};
@@ -72,7 +77,7 @@ void EmptyLinkFunctionForGeneratedCodeHFUserWidget() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UHFUserWidget, 3927312691);
+	IMPLEMENT_CLASS(UHFUserWidget, 560476861);
 	template<> HFDATADRIVEN_API UClass* StaticClass<UHFUserWidget>()
 	{
 		return UHFUserWidget::StaticClass();

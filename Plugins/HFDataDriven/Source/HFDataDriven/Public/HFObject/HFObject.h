@@ -15,4 +15,7 @@ class HFDATADRIVEN_API UHFObject : public UObject, public IHFOOInterface
 {
 	GENERATED_BODY()
 	
+public:
+	virtual void HFRelease() override;
+
 };

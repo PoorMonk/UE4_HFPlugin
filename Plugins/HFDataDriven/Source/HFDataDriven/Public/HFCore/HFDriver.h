@@ -36,6 +36,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//×¢²áGamePlay¿ò¼Üµ½DataDriven
+	void RegisterGamePlay();
+
 public:	
 	UPROPERTY(EditAnywhere, NoClear, BlueprintReadOnly, Category = "HFDataDriven")
 		USceneComponent* RootScene;

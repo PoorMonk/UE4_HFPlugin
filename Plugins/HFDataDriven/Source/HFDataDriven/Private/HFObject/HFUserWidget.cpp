@@ -3,3 +3,11 @@
 
 #include "../Public/HFObject/HFUserWidget.h"
 
+void UHFUserWidget::HFRelease()
+{
+	IHFOOInterface::HFRelease();
+
+	RemoveFromParent();
+	RemoveFromRoot();
+	ConditionalBeginDestroy();
+}

@@ -8,8 +8,30 @@
 
 void IHFOOInterface::RegisterToModule(FName ModName, FName ObjName /*= FName()*/, FName ClsName /*= FName()*/)
 {
+	if (ModName.IsNone())
+	{
+		return;
+	}
+	RegisterInit(ObjName, ClsName);
+	int32 ModIndex = -1;
+	if (IDriver)
+	{
+		ModIndex = HFH::GetEnumIndexFromName(IDriver->ModuleType.ToString(), ModName);
+	}
+	Register(ModIndex);
+}
+
+void IHFOOInterface::RegisterToModule(int32 ModIndex, FName ObjName /*= FName()*/, FName ClsName /*= FName()*/)
+{
+	RegisterInit(ObjName, ClsName);
+	Register(ModIndex);
+}
+
+
+void IHFOOInterface::RegisterInit(FName ObjName /*= FName()*/, FName ClsName /*= FName()*/)
+{
 	//如果已经注册或者模组名为空
-	if ((IDriver && IModule) || ModName.IsNone())
+	if (IDriver && IModule)
 	{
 		return;
 	}
@@ -24,17 +46,22 @@ void IHFOOInterface::RegisterToModule(FName ModName, FName ObjName /*= FName()*/
 	}
 	IBody = Cast<UObject>(this);
 	IDriver = UHFCommon::Get()->GetDriver();
+}
+
+
+void IHFOOInterface::Register(int32 ModIndex)
+{
 	if (IDriver)
 	{
-		ModuleIndex = HFH::GetEnumIndexFromName(IDriver->ModuleType.ToString(), ModName);
+		ModuleIndex = ModIndex;
 		if (ModuleIndex < 0)
 		{
-			HFH::Debug() << GetObjectName() << " Get " << ModName << " ModuleIndex Failed!" << HFH::Endl();
+			HFH::Debug() << GetObjectName() << " Get " << ModIndex << " ModuleIndex Failed!" << HFH::Endl();
 			return;
 		}
 		if (!IDriver->RegisterToModule(this))
 		{
-			HFH::Debug() << GetObjectName() << " Register To " << ModName << " Failed!" << HFH::Endl();
+			HFH::Debug() << GetObjectName() << " Register To " << ModIndex << " Failed!" << HFH::Endl();
 		}
 	}
 	else

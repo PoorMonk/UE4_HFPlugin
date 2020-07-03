@@ -93,6 +93,7 @@ namespace HFH
  */
 
 class AHFDriver;
+class APlayerController;
 
 UCLASS()
 class HFDATADRIVEN_API UHFCommon : public UObject
@@ -105,7 +106,19 @@ public:
 	void InitDriver(AHFDriver* InDriver);
 	AHFDriver* GetDriver();
 
+	void InitController(APlayerController* InController);
+	APlayerController* GetController();
+
+	//暂停游戏
+	void SetPauseGame(bool IsPause);
+
+	//获取游戏是否暂停
+	const bool IsPauseGame() const;
+
 private:
 	static UHFCommon* HFComInst;
+	
 	AHFDriver* Driver;
+
+	APlayerController* PlayerController;
 };

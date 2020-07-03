@@ -4,14 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "HFOOInterface.h"
 #include "HFUserWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class HFDATADRIVEN_API UHFUserWidget : public UUserWidget
+class HFDATADRIVEN_API UHFUserWidget : public UUserWidget, public IHFOOInterface
 {
 	GENERATED_BODY()
 	
+public:
+	virtual void HFRelease() override;
+
 };

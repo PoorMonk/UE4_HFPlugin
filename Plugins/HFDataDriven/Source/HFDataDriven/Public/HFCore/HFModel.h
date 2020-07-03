@@ -39,7 +39,17 @@ public:
 	void GetSelfObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup);
 	//根据传入的对象名获取对象名外的其它对象
 	void GetOtherObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup);
+	//根据名字获取其它类的类型数量
+	void GetClassOtherObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup);
+	//根据名字获取类
+	void GetSelfClass(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup);
+	//根据名字获取其它类
+	void GetOtherClass(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup);
+	//获取所有对象
+	void GetAll(TArray<IHFOOInterface*>& TargetObjectGroup);
 
+	//根据协议获取对象集合
+	void GetAgreementObject(EAgreementType Agreement, TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup);
 
 protected:
 	//框架对象数组，key:ObjectName

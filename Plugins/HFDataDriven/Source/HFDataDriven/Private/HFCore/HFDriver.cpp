@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "../Public/HFCore/HFDriver.h"
+#include "HFCore/HFDriver.h"
+#include "Kismet/GameplayStatics.h"
+#include "HFObject/HFOOInterface.h"
 
 // Sets default values
 AHFDriver::AHFDriver()
@@ -55,7 +57,30 @@ void AHFDriver::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	RegisterGamePlay();
+
 	Center->IterModuleInit(Center);
+}
+
+void AHFDriver::RegisterGamePlay()
+{
+	//ªÒ»°GameInstance
+	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(GetWorld());
+
+	if (GameInstance && Cast<IHFOOInterface>(GameInstance))
+	{
+		Cast<IHFOOInterface>(GameInstance)->RegisterToModule("Center", "GameInstance", "GameInstance");
+	}
+
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	if (!PlayerController)
+	{
+		HFH::Debug() << "No PlayerController" << HFH::Endl();
+	}
+	else
+	{
+		UHFCommon::Get()->InitController(PlayerController);
+	}
 }
 
 // Called every frame

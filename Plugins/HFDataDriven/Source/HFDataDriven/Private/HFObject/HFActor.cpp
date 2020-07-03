@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "../Public/HFObject/HFActor.h"
+#include "HFObject/HFActor.h"
 
 // Sets default values
 AHFActor::AHFActor()
