@@ -35,6 +35,10 @@ public:
 
 	bool RegisterToModule(IHFOOInterface* Obj);
 
+	//执行反射方法
+	void AllowExecuteFunction(HFModuleAgreement Agreement, HFParam* Param);
+	void AllowExecuteFunction(HFObjectAgreement Agreement, HFParam* Param);
+
 protected:
 	//保存模组的数组，顺序与枚举相同
 	TArray<UHFModule*> ModuleGroup;

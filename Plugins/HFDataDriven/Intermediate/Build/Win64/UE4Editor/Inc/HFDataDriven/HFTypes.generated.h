@@ -92,6 +92,15 @@ template<> HFDATADRIVEN_API UClass* StaticClass<class UHFTypes>();
 #define CURRENT_FILE_ID RaceCar_Plugins_HFDataDriven_Source_HFDataDriven_Public_HFCommon_HFTypes_h
 
 
+#define FOREACH_ENUM_ECALLRESULT(op) \
+	op(ECallResult::NoModule) \
+	op(ECallResult::LackObject) \
+	op(ECallResult::NoFunction) \
+	op(ECallResult::Succeed) 
+
+enum class ECallResult : uint8;
+template<> HFDATADRIVEN_API UEnum* StaticEnum<ECallResult>();
+
 #define FOREACH_ENUM_EAGREEMENTTYPE(op) \
 	op(EAgreementType::SelfObject) \
 	op(EAgreementType::OtherObject) \

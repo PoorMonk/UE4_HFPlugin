@@ -27,6 +27,10 @@ public:
 	//注册资源
 	bool RegisterToModule(IHFOOInterface* ObjectInst);
 
+	//执行反射方法
+	void ExecuteFunction(HFModuleAgreement Agreement, HFParam* Param);
+	void ExecuteFunction(HFObjectAgreement Agreement, HFParam* Param);
+
 #if WITH_EDITOR
 	//属性修改方法
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;

@@ -39,6 +39,16 @@ bool AHFDriver::RegisterToModule(IHFOOInterface* ObjectInst)
 	return Center->RegisterToModule(ObjectInst);
 }
 
+void AHFDriver::ExecuteFunction(HFModuleAgreement Agreement, HFParam* Param)
+{
+	Center->AllowExecuteFunction(Agreement, Param);
+}
+
+void AHFDriver::ExecuteFunction(HFObjectAgreement Agreement, HFParam* Param)
+{
+	Center->AllowExecuteFunction(Agreement, Param);
+}
+
 #if WITH_EDITOR
 void AHFDriver::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {

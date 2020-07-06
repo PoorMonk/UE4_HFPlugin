@@ -77,7 +77,7 @@ FName IHFOOInterface::GetObjectName() const
 
 FName IHFOOInterface::GetClassName() const
 {
-	return IClassName.IsNone() ? IBody->StaticClass()->GetFName() : IClassName;
+	return IClassName.IsNone() ? IBody->GetClass()->GetFName() : IClassName;
 }
 
 int32 IHFOOInterface::GetModuleIndex() const
@@ -209,4 +209,28 @@ void IHFOOInterface::OnDisable()
 void IHFOOInterface::HFDestroy()
 {
 	IModule->ChildDestroy(GetObjectName());
+}
+
+void IHFOOInterface::ExecuteFunction(HFModuleAgreement Agreement, HFParam* Param)
+{
+	if (Agreement.ModuleIndex == ModuleIndex)
+	{
+		IModule->ExecuteFunction(Agreement, Param);
+	}
+	else
+	{
+		IDriver->ExecuteFunction(Agreement, Param);
+	}
+}
+
+void IHFOOInterface::ExecuteFunction(HFObjectAgreement Agreement, HFParam* Param)
+{
+	if (Agreement.ModuleIndex == ModuleIndex)
+	{
+		IModule->ExecuteFunction(Agreement, Param);
+	}
+	else
+	{
+		IDriver->ExecuteFunction(Agreement, Param);
+	}
 }

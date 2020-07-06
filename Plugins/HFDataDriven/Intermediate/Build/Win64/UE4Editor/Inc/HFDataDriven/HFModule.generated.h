@@ -8,14 +8,79 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+enum class EAgreementType : uint8;
 #ifdef HFDATADRIVEN_HFModule_generated_h
 #error "HFModule.generated.h already included, missing '#pragma once' in HFModule.h"
 #endif
 #define HFDATADRIVEN_HFModule_generated_h
 
 #define RaceCar_Plugins_HFDataDriven_Source_HFDataDriven_Public_HFCore_HFModule_h_17_SPARSE_DATA
-#define RaceCar_Plugins_HFDataDriven_Source_HFDataDriven_Public_HFCore_HFModule_h_17_RPC_WRAPPERS
-#define RaceCar_Plugins_HFDataDriven_Source_HFDataDriven_Public_HFCore_HFModule_h_17_RPC_WRAPPERS_NO_PURE_DECLS
+#define RaceCar_Plugins_HFDataDriven_Source_HFDataDriven_Public_HFCore_HFModule_h_17_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execDisableObject) \
+	{ \
+		P_GET_ENUM(EAgreementType,Z_Param_Agreement); \
+		P_GET_TARRAY(FName,Z_Param_TargetNameGroup); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->DisableObject(EAgreementType(Z_Param_Agreement),Z_Param_TargetNameGroup); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execEnableObject) \
+	{ \
+		P_GET_ENUM(EAgreementType,Z_Param_Agreement); \
+		P_GET_TARRAY(FName,Z_Param_TargetNameGroup); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->EnableObject(EAgreementType(Z_Param_Agreement),Z_Param_TargetNameGroup); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execDestroyObject) \
+	{ \
+		P_GET_ENUM(EAgreementType,Z_Param_Agreement); \
+		P_GET_TARRAY(FName,Z_Param_TargetNameGroup); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->DestroyObject(EAgreementType(Z_Param_Agreement),Z_Param_TargetNameGroup); \
+		P_NATIVE_END; \
+	}
+
+
+#define RaceCar_Plugins_HFDataDriven_Source_HFDataDriven_Public_HFCore_HFModule_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execDisableObject) \
+	{ \
+		P_GET_ENUM(EAgreementType,Z_Param_Agreement); \
+		P_GET_TARRAY(FName,Z_Param_TargetNameGroup); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->DisableObject(EAgreementType(Z_Param_Agreement),Z_Param_TargetNameGroup); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execEnableObject) \
+	{ \
+		P_GET_ENUM(EAgreementType,Z_Param_Agreement); \
+		P_GET_TARRAY(FName,Z_Param_TargetNameGroup); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->EnableObject(EAgreementType(Z_Param_Agreement),Z_Param_TargetNameGroup); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execDestroyObject) \
+	{ \
+		P_GET_ENUM(EAgreementType,Z_Param_Agreement); \
+		P_GET_TARRAY(FName,Z_Param_TargetNameGroup); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->DestroyObject(EAgreementType(Z_Param_Agreement),Z_Param_TargetNameGroup); \
+		P_NATIVE_END; \
+	}
+
+
 #define RaceCar_Plugins_HFDataDriven_Source_HFDataDriven_Public_HFCore_HFModule_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUHFModule(); \

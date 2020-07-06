@@ -141,5 +141,55 @@ enum class EAgreementType : uint8
 	OtherClass,			//跟其它类通信
 	All					//跟所有的对象通信
 };
+
+//调用结果
+UENUM()
+enum class ECallResult : uint8
+{
+	NoModule = 0,	//缺失模组
+	LackObject,		//缺失部分对象
+	NoFunction,		//缺失方法
+	Succeed			//调用成功
+};
+
+//通信参数结构体基类
+struct HFParam
+{
+public:
+	//调用结果
+	ECallResult CallResult;
+
+	//参数指针
+	void* ParamPtr;
+};
+
+//通信协议，Module方法
+struct  HFModuleAgreement
+{
+public:
+	//模组ID
+	int32 ModuleIndex;
+
+	//方法名
+	FName FunctionName;
+};
+
+//通信协议， HFOOInterface方法
+struct HFObjectAgreement
+{
+public:
+	//模组ID
+	int32 ModuleIndex;
+
+	//协议类型
+	EAgreementType AgreementType;
+
+	//对象组名
+	TArray<FName> ObjectGroup;
+
+	//方法名
+	FName FunctionName;
+};
+
 #pragma endregion
 

@@ -30,9 +30,18 @@ public:
 	void AssignModule(UHFModule* Mod);
 
 protected:
+
+	//执行反射方法
+	void ExecuteFunction(HFModuleAgreement Agreement, HFParam* Param);
+	void ExecuteFunction(HFObjectAgreement Agreement, HFParam* Param);
+
+protected:
 	//保存对应的模组
 	UHFModule* IModule;
 
 	//保存对应的驱动器
 	AHFDriver* IDriver;
+
+	//对应模组的序号
+	int32 ModuleIndex;
 };

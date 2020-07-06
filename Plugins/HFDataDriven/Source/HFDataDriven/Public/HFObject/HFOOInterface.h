@@ -78,6 +78,12 @@ public:
 	EBaseObjectState RunState;
 
 protected:
+
+	//执行反射方法
+	void ExecuteFunction(HFModuleAgreement Agreement, HFParam* Param);
+	void ExecuteFunction(HFObjectAgreement Agreement, HFParam* Param);
+
+protected:
 	//保存自身的UObject
 	UObject* IBody;
 

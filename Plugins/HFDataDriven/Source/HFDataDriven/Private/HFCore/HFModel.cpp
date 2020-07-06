@@ -193,7 +193,7 @@ void UHFModel::GetSelfObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterfac
 	}
 }
 
-void UHFModel::GetOtherObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup)
+int32 UHFModel::GetOtherObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup)
 {
 	for (TMap<FName, IHFOOInterface*>::TIterator It(ObjectGroup); It; ++It)
 	{
@@ -211,13 +211,14 @@ void UHFModel::GetOtherObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterfa
 			TargetObjectGroup.Push(It->Value);
 		}
 	}
+	return ObjectGroup.Num();
 }
 
-void UHFModel::GetClassOtherObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup)
+int32 UHFModel::GetClassOtherObject(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup)
 {
 	if (!ObjectGroup.Contains(TargetNameGroup[0]))
 	{
-		return;
+		return 0;
 	}
 	FName ObjectClassName = (*ObjectGroup.Find(TargetNameGroup[0]))->GetClassName();
 	for (TArray<IHFOOInterface*>::TIterator It(*ObjectClassGroup.Find(ObjectClassName)); It; ++It)
@@ -236,6 +237,7 @@ void UHFModel::GetClassOtherObject(TArray<FName> TargetNameGroup, TArray<IHFOOIn
 			TargetObjectGroup.Push(*It);
 		}
 	}
+	return (*ObjectClassGroup.Find(ObjectClassName)).Num();
 }
 
 void UHFModel::GetSelfClass(TArray<FName> TargetNameGroup, TArray<IHFOOInterface*>& TargetObjectGroup)

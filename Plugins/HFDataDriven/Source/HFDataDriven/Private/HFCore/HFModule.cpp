@@ -75,3 +75,159 @@ void UHFModule::ChildDestroy(FName ObjectName)
 	Model->DestroyObject(ObjectName);
 }
 
+void UHFModule::DestroyObject(EAgreementType Agreement, TArray<FName> TargetNameGroup)
+{
+	Model->DestroyObject(Agreement, TargetNameGroup);
+}
+
+void UHFModule::EnableObject(EAgreementType Agreement, TArray<FName> TargetNameGroup)
+{
+	Model->EnableObject(Agreement, TargetNameGroup);
+}
+
+void UHFModule::DisableObject(EAgreementType Agreement, TArray<FName> TargetNameGroup)
+{
+	Model->DisableObject(Agreement, TargetNameGroup);
+}
+
+//void UHFModule::TestReflect(int32 Counter, FString InfoStr, bool& BackResult)
+//{
+//	HFH::Debug() << Counter << " ; " << InfoStr << " ; " << GetFName() << HFH::Endl();
+//
+//	BackResult = false;
+//}
+//
+//void UHFModule::TestNoParam()
+//{
+//	HFH::Debug() << "No Param" << HFH::Endl();
+//}
+
+void UHFModule::ExecuteFunction(HFModuleAgreement Agreement, HFParam* Param)
+{
+	UFunction* ExeFunc = FindFunction(Agreement.FunctionName);
+	if (ExeFunc)
+	{
+		Param->CallResult = ECallResult::Succeed;
+		ProcessEvent(ExeFunc, Param->ParamPtr);
+	}
+	else
+	{
+		Param->CallResult = ECallResult::NoFunction;
+	}
+}
+
+void UHFModule::ExecuteFunction(HFObjectAgreement Agreement, HFParam* Param)
+{
+	switch (Agreement.AgreementType)
+	{
+	case EAgreementType::SelfObject:
+		ExecuteSelfObject(Agreement, Param);
+		break;
+	case EAgreementType::OtherObject:
+		ExecuteOtherObject(Agreement, Param);
+		break;
+	case EAgreementType::ClassOtherObject:
+		ExecuteClassOtherObject(Agreement, Param);
+		break;
+	case EAgreementType::SelfClass:
+		ExecuteSelfClass(Agreement, Param);
+		break;
+	case EAgreementType::OtherClass:
+		ExecuteOtherClass(Agreement, Param);
+		break;
+	case EAgreementType::All:
+		ExecuteAll(Agreement, Param);
+		break;	
+	default:
+		break;
+	}
+}
+
+void UHFModule::ExecuteSelfObject(HFObjectAgreement Agreement, HFParam* Param)
+{
+	//定义存储目标对象的组
+	TArray<IHFOOInterface*> TargetObjectGroup;
+	Model->GetSelfObject(Agreement.ObjectGroup, TargetObjectGroup);
+	
+	ExecuteFunc(TargetObjectGroup, Agreement, Param);
+
+	//如果获取的对象有缺失，设置结果为对象缺失，这个结果的优先级最高
+	if (TargetObjectGroup.Num() != Agreement.ObjectGroup.Num())
+	{
+		Param->CallResult = ECallResult::LackObject;
+	}
+}
+
+void UHFModule::ExecuteOtherObject(HFObjectAgreement Agreement, HFParam* Param)
+{
+	TArray<IHFOOInterface*> TargetObjectGroup;
+	int32 TotalObjectNum = Model->GetOtherObject(Agreement.ObjectGroup, TargetObjectGroup);
+	
+	ExecuteFunc(TargetObjectGroup, Agreement, Param);
+
+	if (Agreement.ObjectGroup.Num() + TargetObjectGroup.Num() != TotalObjectNum)
+	{
+		Param->CallResult = ECallResult::LackObject;
+	}
+}
+
+void UHFModule::ExecuteClassOtherObject(HFObjectAgreement Agreement, HFParam* Param)
+{
+	TArray<IHFOOInterface*> TargetObjectGroup;
+
+	int32 TotalClassNum = Model->GetClassOtherObject(Agreement.ObjectGroup, TargetObjectGroup);
+	
+	ExecuteFunc(TargetObjectGroup, Agreement, Param);
+
+	if (Agreement.ObjectGroup.Num() + TargetObjectGroup.Num() != TotalClassNum)
+	{
+		Param->CallResult = ECallResult::LackObject;
+	}
+}
+
+void UHFModule::ExecuteSelfClass(HFObjectAgreement Agreement, HFParam* Param)
+{
+	TArray<IHFOOInterface*> TargetObjectGroup;
+	Model->GetSelfClass(Agreement.ObjectGroup, TargetObjectGroup);
+	ExecuteFunc(TargetObjectGroup, Agreement, Param);
+	if (!TargetObjectGroup.Num())
+	{
+		Param->CallResult = ECallResult::LackObject;
+	}
+}
+
+void UHFModule::ExecuteOtherClass(HFObjectAgreement Agreement, HFParam* Param)
+{
+	TArray<IHFOOInterface*> TargetObjectGroup;
+	Model->GetOtherClass(Agreement.ObjectGroup, TargetObjectGroup);
+	ExecuteFunc(TargetObjectGroup, Agreement, Param);
+	if (!TargetObjectGroup.Num())
+	{
+		Param->CallResult = ECallResult::LackObject;
+	}
+}
+
+void UHFModule::ExecuteAll(HFObjectAgreement Agreement, HFParam* Param)
+{
+	TArray<IHFOOInterface*> TargetObjectGroup;
+	Model->GetAll(TargetObjectGroup);
+	ExecuteFunc(TargetObjectGroup, Agreement, Param);
+}
+
+void UHFModule::ExecuteFunc(const TArray<IHFOOInterface*>& TargetObjGroup, HFObjectAgreement Agreement, HFParam* Param)
+{
+	for (int i = 0; i < TargetObjGroup.Num(); ++i)
+	{
+		UFunction* ExeFunc = TargetObjGroup[i]->GetObjectBody()->FindFunction(Agreement.FunctionName);
+		if (ExeFunc)
+		{
+			Param->CallResult = ECallResult::Succeed;
+			TargetObjGroup[i]->GetObjectBody()->ProcessEvent(ExeFunc, Param->ParamPtr);
+		}
+		else
+		{
+			Param->CallResult = ECallResult::NoFunction;
+		}
+	}
+}
+

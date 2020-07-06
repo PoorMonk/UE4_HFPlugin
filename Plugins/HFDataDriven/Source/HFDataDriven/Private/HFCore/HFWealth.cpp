@@ -10,5 +10,5 @@ void UHFWealth::WealthBeginPlay()
 
 void UHFWealth::WealthTick(float DeltaSeconds)
 {
-
+	
 }

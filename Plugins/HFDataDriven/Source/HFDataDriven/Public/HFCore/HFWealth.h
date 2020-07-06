@@ -20,4 +20,5 @@ public:
 	virtual void WealthInit() {}
 	virtual void WealthBeginPlay();
 	virtual void WealthTick(float DeltaSeconds);
+	
 };

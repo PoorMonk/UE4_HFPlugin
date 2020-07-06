@@ -13,14 +13,79 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeHFTypes() {}
 // Cross Module References
-	HFDATADRIVEN_API UEnum* Z_Construct_UEnum_HFDataDriven_EAgreementType();
+	HFDATADRIVEN_API UEnum* Z_Construct_UEnum_HFDataDriven_ECallResult();
 	UPackage* Z_Construct_UPackage__Script_HFDataDriven();
+	HFDATADRIVEN_API UEnum* Z_Construct_UEnum_HFDataDriven_EAgreementType();
 	HFDATADRIVEN_API UEnum* Z_Construct_UEnum_HFDataDriven_EBaseObjectState();
 	HFDATADRIVEN_API UEnum* Z_Construct_UEnum_HFDataDriven_EBaseObjectLife();
 	HFDATADRIVEN_API UClass* Z_Construct_UClass_UHFTypes_NoRegister();
 	HFDATADRIVEN_API UClass* Z_Construct_UClass_UHFTypes();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
 // End Cross Module References
+	static UEnum* ECallResult_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_HFDataDriven_ECallResult, Z_Construct_UPackage__Script_HFDataDriven(), TEXT("ECallResult"));
+		}
+		return Singleton;
+	}
+	template<> HFDATADRIVEN_API UEnum* StaticEnum<ECallResult>()
+	{
+		return ECallResult_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_ECallResult(ECallResult_StaticEnum, TEXT("/Script/HFDataDriven"), TEXT("ECallResult"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_HFDataDriven_ECallResult_Hash() { return 1021374928U; }
+	UEnum* Z_Construct_UEnum_HFDataDriven_ECallResult()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_HFDataDriven();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("ECallResult"), 0, Get_Z_Construct_UEnum_HFDataDriven_ECallResult_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UE4CodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "ECallResult::NoModule", (int64)ECallResult::NoModule },
+				{ "ECallResult::LackObject", (int64)ECallResult::LackObject },
+				{ "ECallResult::NoFunction", (int64)ECallResult::NoFunction },
+				{ "ECallResult::Succeed", (int64)ECallResult::Succeed },
+			};
+#if WITH_METADATA
+			const UE4CodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "Comment", "//???\xc3\xbd???\n" },
+				{ "LackObject.Comment", "//\xc8\xb1\xca\xa7\xc4\xa3??\n" },
+				{ "LackObject.Name", "ECallResult::LackObject" },
+				{ "LackObject.ToolTip", "\xc8\xb1\xca\xa7\xc4\xa3??" },
+				{ "ModuleRelativePath", "Public/HFCommon/HFTypes.h" },
+				{ "NoFunction.Comment", "//\xc8\xb1\xca\xa7???\xd6\xb6???\n" },
+				{ "NoFunction.Name", "ECallResult::NoFunction" },
+				{ "NoFunction.ToolTip", "\xc8\xb1\xca\xa7???\xd6\xb6???" },
+				{ "NoModule.Name", "ECallResult::NoModule" },
+				{ "Succeed.Comment", "//\xc8\xb1\xca\xa7????\n" },
+				{ "Succeed.Name", "ECallResult::Succeed" },
+				{ "Succeed.ToolTip", "\xc8\xb1\xca\xa7????" },
+				{ "ToolTip", "???\xc3\xbd???" },
+			};
+#endif
+			static const UE4CodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_HFDataDriven,
+				nullptr,
+				"ECallResult",
+				"ECallResult",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				UE4CodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UE4CodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
 	static UEnum* EAgreementType_StaticEnum()
 	{
 		static UEnum* Singleton = nullptr;

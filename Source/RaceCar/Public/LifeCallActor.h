@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "HFObject/HFActor.h"
+#include "HFCommon/HFDefine.h"
 #include "LifeCallActor.generated.h"
 
 /**
@@ -26,6 +27,13 @@ public:
 	virtual void HFUnLoading() override;
 	virtual void HFRelease() override;
 
+	UFUNCTION()
+		void AcceptCall(FString InfoStr);
+
 protected:
 	int32 TimeCounter;
+
+	HFMODFUNC_THREE(TestReflect, int32, Counter, FString, InfoStr, bool, BackResult);
+
+	HFMODFUNC(TestNoParam);
 };

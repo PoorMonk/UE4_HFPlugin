@@ -54,7 +54,7 @@ namespace HFH
 		{
 			return FString("Invalid");
 		}
-		return EnumPtr->GetEnumName((int32)Value);
+		return EnumPtr->GetNameStringByIndex((int32)Value);
 	}
 
 	//输入传入的Enum值对应的FName
@@ -85,6 +85,17 @@ namespace HFH
 			return -1;
 		}
 		return EnumPtr->GetIndexByName(Value);
+	}
+
+	//获取反射调用结果
+	FORCEINLINE FString GetCallResult(ECallResult Value)
+	{
+		const UEnum* EnumPtr = FindObject<UEnum>((UObject*)ANY_PACKAGE, *FString("ECallResult"), true);
+		if (EnumPtr)
+		{
+			return EnumPtr->GetNameStringByIndex((int32)Value);
+		}
+		return "";
 	}
 }
 

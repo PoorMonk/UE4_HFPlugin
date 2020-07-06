@@ -99,3 +99,27 @@ bool UHFCenterModule::RegisterToModule(IHFOOInterface* Obj)
 
 	return false;
 }
+
+void UHFCenterModule::AllowExecuteFunction(HFModuleAgreement Agreement, HFParam* Param)
+{
+	if (Agreement.ModuleIndex < ModuleGroup.Num() && ModuleGroup[Agreement.ModuleIndex])
+	{
+		ModuleGroup[Agreement.ModuleIndex]->ExecuteFunction(Agreement, Param);
+	}
+	else
+	{
+		Param->CallResult = ECallResult::NoModule;
+	}
+}
+
+void UHFCenterModule::AllowExecuteFunction(HFObjectAgreement Agreement, HFParam* Param)
+{
+	if (Agreement.ModuleIndex < ModuleGroup.Num() && ModuleGroup[Agreement.ModuleIndex])
+	{
+		ModuleGroup[Agreement.ModuleIndex]->ExecuteFunction(Agreement, Param);
+	}
+	else
+	{
+		Param->CallResult = ECallResult::NoModule;
+	}
+}

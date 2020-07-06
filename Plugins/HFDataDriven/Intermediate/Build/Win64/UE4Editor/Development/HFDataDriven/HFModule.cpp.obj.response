@@ -229,6 +229,12 @@
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\ClothingSystemRuntimeInterface
 /I Runtime\ClothingSystemRuntimeInterface\Public
 /I Runtime\AudioMixerCore\Public
+/I ..\Plugins\Runtime\PhysXVehicles\Intermediate\Build\Win64\UE4Editor\Inc\PhysXVehicles
+/I ..\Plugins\Runtime\PhysXVehicles\Source
+/I ..\Plugins\Runtime\PhysXVehicles\Source\PhysXVehicles\Public
+/I ..\Intermediate\Build\Win64\UE4Editor\Inc\AnimGraphRuntime
+/I Runtime\AnimGraphRuntime\Public
+/I ..\Plugins\Runtime\PhysXVehicles\Source\ThirdParty
 /I C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Inc\HFDataDriven
 /I C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source
 /I C:\Users\xnxs-yf-c\Desktop\UE4\RaceCar\Plugins\HFDataDriven\Source\HFDataDriven\Public
