@@ -6,6 +6,8 @@
 #include "HFObject/HFActor.h"
 #include "ReflectHFActor.generated.h"
 
+
+
 /**
  * 
  */
@@ -21,7 +23,10 @@ public:
 		void AcceptCall(FString InfoStr);
 
 	UFUNCTION()
-		void WealthCall(int32 Counter, FString InfoStr, bool InFlag);
+		int32 WealthCall(int32 Counter, FString InfoStr, bool InFlag);
+
+	template<typename RetType, typename... VarTypes>
+	void RegFuncList(TFunction<RetType(VarTypes...)> InsFunc);
 
 protected:
 
@@ -73,4 +78,14 @@ protected:
 		ExecuteFunction(Agreement, Param);
 		return Param;
 	}*/
+
+protected:
+	TArray<AnyElement*> ElementList;
+	TArray<HFAnyFunc*> FuncList;
 };
+
+template<typename RetType, typename... VarTypes>
+void AReflectHFActor::RegFuncList(TFunction<RetType(VarTypes...)> InsFunc)
+{
+	FuncList.Push(new HFAnyFunc(InsFunc));
+}

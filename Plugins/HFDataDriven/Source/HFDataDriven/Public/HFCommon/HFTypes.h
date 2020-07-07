@@ -193,3 +193,81 @@ public:
 
 #pragma endregion
 
+#pragma region HFAnyFunc
+//存储任意类型的函数
+struct HFAnyFunc 
+{
+	struct BaseFunc
+	{
+	public:
+		virtual ~BaseFunc() { }
+	};
+	template<typename RetType, typename... VarTypes>
+	struct ValFunc : public BaseFunc
+	{
+	public:
+		TFunction<RetType(VarTypes...)> TarFunc;
+		ValFunc(const TFunction<RetType(VarTypes...)> InsFunc) : TarFunc(InsFunc) { }
+		RetType Execute(VarTypes... Params)
+		{
+			return TarFunc(Params...);
+		}
+	};
+	BaseFunc* FuncPtr;
+public:
+	HFAnyFunc() : FuncPtr(nullptr) { }
+	template<typename RetType, typename... VarTypes>
+	HFAnyFunc(const TFunction<RetType(VarTypes...)> InsFunc) : FuncPtr(new ValFunc<RetType, VarTypes...>(InsFunc)) { }
+	~HFAnyFunc() { if (FuncPtr) delete FuncPtr; }
+	template<typename RetType, typename... VarTypes>
+	RetType Execute(VarTypes... Params)
+	{
+		ValFunc<RetType, VarTypes...>* SubFuncPtr = static_cast<ValFunc<RetType, VarTypes...>*>(FuncPtr);
+		return SubFuncPtr->Execute(Params...);
+	}
+	template<typename RetType, typename... VarTypes>
+	TFunction<RetType(VarTypes...)>& GetFunc()
+	{
+		ValFunc<RetType, VarTypes...>* SubFuncPtr = static_cast<ValFunc<RetType, VarTypes...>*>(FuncPtr);
+		return SubFuncPtr->TarFunc;
+	}
+};
+
+#pragma endregion
+
+#pragma region AnyElement
+//存储任意类型的数据结构
+struct AnyElement
+{
+	//元素父结构体
+	struct BaseElement
+	{
+	public:
+		virtual ~BaseElement() { }
+	};
+	//实际存储值得结构体
+	template<typename T>
+	struct ValueElement : public BaseElement
+	{
+	public:
+		T Value;
+		ValueElement(const T& InValue) : Value(InValue) { }
+	};
+	//父结构体指针，用于存储实例化得子结构体的地址
+	BaseElement* ElementPtr;
+
+public:
+	AnyElement() : ElementPtr(nullptr) { }
+	//构造函数传入值并且实例化子结构体存储于父结构体指针
+	template<typename T>
+	AnyElement(const T& InValue) : ElementPtr(new ValueElement<T>(InValue)) { }
+	~AnyElement() { if (ElementPtr) delete ElementPtr; }
+	//获取保存的变量
+	template<typename T>
+	T& Get()
+	{
+		ValueElement<T>* SubPtr = static_cast<ValueElement<T>*>(ElementPtr);
+		return SubPtr->Value;
+	}
+};
+#pragma endregion
