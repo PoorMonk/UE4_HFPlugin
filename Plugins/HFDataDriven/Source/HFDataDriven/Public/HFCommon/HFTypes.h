@@ -271,3 +271,142 @@ public:
 	}
 };
 #pragma endregion
+
+#pragma region MsgNode
+//事件节点
+struct HFMsgNode
+{
+	//被调用的接口数量
+	int32 CallCount;
+	//方法列表
+	TMap<int32, HFAnyFunc*> FuncQueue;
+	//注册方法
+	template<typename RetType, typename... VarTypes>
+	int32 RegisterFunc(TFunction<RetType(VarTypes...)> InsFunc);
+	//注销方法
+	void UnRegisterFunc(int32 FuncID)
+	{
+		//从列表移除对象
+		HFAnyFunc* DesPtr = *FuncQueue.Find(FuncID);
+		FuncQueue.Remove(FuncID);
+		delete DesPtr;
+	}
+	//清空节点
+	void ClearNode()
+	{
+		for (TMap<int32, HFAnyFunc*>::TIterator It(FuncQueue); It; ++It)
+		{
+			delete It.Value();
+		}
+	}
+	//执行方法
+	template<typename RetType, typename... VarTypes>
+	RetType Execute(VarTypes... Params);
+	//判断是否有绑定函数
+	bool IsBound() { return FuncQueue.Num() > 0; }
+	//执行绑定方法
+	template<typename RetType, typename... VarTypes>
+	bool ExecuteIfBound(VarTypes... Params);
+
+	HFMsgNode() : CallCount(0) { }
+};
+
+template<typename RetType, typename... VarTypes>
+int32 HFMsgNode::RegisterFunc(TFunction<RetType(VarTypes...)> InsFunc)
+{
+	//获取方法序列里的所有下标
+	TArray<int32> FuncKeyQuene;
+	FuncQueue->GenerateKeyArray(FuncKeyQuene);
+	//获取新下标
+	int32 NewID;
+	for (int32 i = FuncKeyQuene.Num(); i >= 0; --i)
+	{
+		if (!FuncKeyQuene.Contains(i))
+		{
+			NewID = i;
+			break;
+		}
+	}
+	//将新方法添加到节点
+	FuncQueue.Add(NewID, new HFAnyFunc(InsFunc));
+	return NewID;
+}
+
+template<typename RetType, typename... VarTypes>
+RetType HFMsgNode::Execute(VarTypes... Params)
+{
+	//遍历第二个到最后一个
+	TMap<int32, HFAnyFunc*>::TIterator It(FuncQueue);
+	It++;
+	for (; It; ++It)
+	{
+		It.Value()->Execute<RetType, VarTypes...>(Params...);
+	}
+	//获取第一个方法
+	TMap<int32, HFAnyFunc*>::TIterator IBegin(FuncQueue);
+	return IBegin.Value()->Execute<RetType, VarTypes...>(Params...);
+}
+
+template<typename RetType, typename... VarTypes>
+bool HFMsgNode::ExecuteIfBound(VarTypes... Params)
+{
+	if (!IsBound()) return false;
+
+	for (TMap<int32, HFAnyFunc*>::TIterator It(FuncQueue); It; ++It)
+	{
+		It.Value()->Execute<RetType, VarTypes...>(Params...);
+	}
+	return true;
+}
+
+#pragma endregion
+
+#pragma region HFCallHandle
+
+struct HFMsgQueue;
+template<typename RetType, typename... VarTypes>
+struct HFCallHandle
+{
+	HFCallHandle(HFMsgNode* MQ, FName CN)
+	{
+
+	}
+};
+#pragma endregion
+
+#pragma region HFMsgQueue
+struct HFFuncHandle;
+
+struct HFMsgQueue
+{
+	//节点序列
+	TMap<FName, HFMsgNode> MsgQueue;
+	//注册调用接口
+	template<typename RetType, typename... VarTypes>
+	HFCallHandle<RetType, VarTypes...> RegisterCallPort(FName CallName);
+	//注册方法接口
+	template<typename RetType, typename... VarTypes>
+	HFFuncHandle RegisterFuncPort(FName CallName, TFunction<RetType(VarTypes...)> InsFunc);
+	//移除调用接口
+	void UnRegisterCallPort(FName CallName)
+	{
+		MsgQueue.Find(CallName)->CallCount--;
+		if (MsgQueue.Find(CallName)->CallCount <= 0)
+		{
+			MsgQueue.Find(CallName)->ClearNode();
+			MsgQueue.Remove(CallName);
+		}
+	}
+};
+#pragma endregion
+
+#pragma region HFFuncHandle
+
+struct HFFuncHandle
+{
+	HFFuncHandle(HFMsgNode* MQ, FName CN)
+	{
+
+	}
+};
+#pragma endregion

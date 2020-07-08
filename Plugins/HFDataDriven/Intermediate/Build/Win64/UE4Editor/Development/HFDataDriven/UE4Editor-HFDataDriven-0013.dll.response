@@ -69,8 +69,8 @@
 "G:\Program Files\EpicGames\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Development\SlateCore\UE4Editor-SlateCore.lib"
 "G:\Program Files\EpicGames\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Development\UMG\UE4Editor-UMG.lib"
 "G:\Program Files\EpicGames\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Development\Core\UE4Editor-Core.lib"
-/OUT:"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Binaries\Win64\UE4Editor-HFDataDriven-0009.dll"
-/IMPLIB:"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Development\HFDataDriven\UE4Editor-HFDataDriven-0009.suppressed.lib"
-/PDB:"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Binaries\Win64\UE4Editor-HFDataDriven-0009.pdb"
+/OUT:"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Binaries\Win64\UE4Editor-HFDataDriven-0013.dll"
+/IMPLIB:"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Intermediate\Build\Win64\UE4Editor\Development\HFDataDriven\UE4Editor-HFDataDriven-0013.suppressed.lib"
+/PDB:"D:\Unreal\UnrealProjects\C++\Framework\UE4_HFPlugin\Plugins\HFDataDriven\Binaries\Win64\UE4Editor-HFDataDriven-0013.pdb"
 /ignore:4078
 /INCLUDE:IMPLEMENT_MODULE_HFDataDriven
