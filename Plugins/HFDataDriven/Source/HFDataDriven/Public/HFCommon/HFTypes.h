@@ -232,7 +232,6 @@ public:
 		return SubFuncPtr->TarFunc;
 	}
 };
-
 #pragma endregion
 
 #pragma region AnyElement
@@ -362,16 +361,90 @@ bool HFMsgNode::ExecuteIfBound(VarTypes... Params)
 #pragma endregion
 
 #pragma region HFCallHandle
-
 struct HFMsgQueue;
+
 template<typename RetType, typename... VarTypes>
 struct HFCallHandle
 {
+	//事件队列
+	HFMsgQueue* MsgQueue;
+	//节点名，调用名
+	FName CallName;
+	//是否有效,用于重写等于操作符保存状态
+	TSharedPtr<bool> IsActived;
+	//执行方法
+	RetType Execute(VarTypes... Params);
+	//是否已经绑定
+	bool IsBound();
+	//执行绑定函数
+	bool ExecuteIfBound(VarTypes... Params);
+	//注销调用接口
+	void UnRegister();
+
+	HFCallHandle() { }
+
 	HFCallHandle(HFMsgNode* MQ, FName CN)
 	{
+		MsgQueue = MQ;
+		CallName = CN;
+		IsActived = MakeShareable<bool>(new bool(true));
+	}
 
+	//重写操作符
+	HFCallHandle<RetType, VarTypes...>& operator=(const HFCallHandle<RetType, VarTypes...>& other)
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+		MsgQueue = other.MsgQueue;
+		CallName = other.CallName;
+		IsActived = other.IsActived;
+		return *this;
 	}
 };
+
+template<typename RetType, typename... VarTypes>
+void HFCallHandle<RetType, VarTypes...>::UnRegister()
+{
+	if (*IsActived->Get())
+	{
+		MsgQueue->UnRegisterCallPort(CallName);
+	}
+	*IsActived->Get() = false;
+}
+
+template<typename RetType, typename... VarTypes>
+bool HFCallHandle<RetType, VarTypes...>::ExecuteIfBound(VarTypes... Params)
+{
+	if (!IsBound() || !(*IsActived->Get()))
+	{
+		return false;
+	}
+	MsgQueue->Execute<RetType, VarTypes...>(CallName, Params...);
+	return true;
+}
+
+template<typename RetType, typename... VarTypes>
+bool HFCallHandle<RetType, VarTypes...>::IsBound()
+{
+	if (!(*IsActived->Get()))
+	{
+		return false;
+	}
+	return MsgQueue->IsBound(CallName);
+}
+
+template<typename RetType, typename... VarTypes>
+RetType HFCallHandle<RetType, VarTypes...>::Execute(VarTypes... Params)
+{
+	if (!(*IsActived->Get()))
+	{
+		return nullptr;
+	}
+	return MsgQueue->Execute<RetType, VarTypes...>(CallName, Params...);
+}
+
 #pragma endregion
 
 #pragma region HFMsgQueue
@@ -390,23 +463,111 @@ struct HFMsgQueue
 	//移除调用接口
 	void UnRegisterCallPort(FName CallName)
 	{
-		MsgQueue.Find(CallName)->CallCount--;
-		if (MsgQueue.Find(CallName)->CallCount <= 0)
+		HFMsgNode* MsgNode = MsgQueue.Find(CallName);
+		MsgNode->CallCount--;
+		if (MsgNode->CallCount <= 0)
 		{
-			MsgQueue.Find(CallName)->ClearNode();
+			MsgNode->ClearNode();
 			MsgQueue.Remove(CallName);
 		}
 	}
+	//注销方法接口
+	void UnRegisterFuncPort(FName CallName, int32 FuncID)
+	{
+		MsgQueue.Find(CallName)->UnRegisterFunc(FuncID);
+	}
+	//执行方法接口
+	template<typename RetType, typename... VarTypes>
+	RetType Execute(FName CallName, VarTypes... Params);
+	//是否已经绑定方法
+	bool IsBound(FName CallName) { return MsgQueue.Find(CallName)->IsBound(); }
 };
+
+template<typename RetType, typename... VarTypes>
+HFCallHandle<RetType, VarTypes...>
+HFMsgQueue::RegisterCallPort(FName CallName)
+{
+	//如果已经存在对应CallName的调用接口，就把计数器+1
+	if (MsgQueue.Contains(CallName))
+	{
+		MsgQueue.Find(CallName)->CallCount++;
+	}
+	else
+	{
+		//创建新的事件节点并添加到队列
+		MsgQueue.Add(CallName, HFMsgNode());
+		//计数器加1
+		MsgQueue.Find(CallName)->CallCount++;
+	}
+	//返回调用句柄
+	return HFCallHandle<RetType, VarTypes...>(this, CallName);
+}
+
+template<typename RetType, typename... VarTypes>
+HFFuncHandle HFMsgQueue::RegisterFuncPort(FName CallName, TFunction<RetType(VarTypes...)> InsFunc)
+{
+	//获取新的方法下标
+	int32 FuncID;
+	if (!MsgQueue.Contains(CallName))
+	{
+		MsgQueue.Add(CallName, HFMsgNode());
+	}
+	FuncID = MsgQueue.Find(CallName)->RegisterFunc(InsFunc);
+	return HFFuncHandle(this, CallName, FuncID);
+}
+
+template<typename RetType, typename... VarTypes>
+RetType HFMsgQueue::Execute(FName CallName, VarTypes... Params)
+{
+	return MsgQueue.Find(CallName)->Execute<RetType, VarTypes...>(Params...);
+}
+
 #pragma endregion
 
 #pragma region HFFuncHandle
 
 struct HFFuncHandle
 {
-	HFFuncHandle(HFMsgNode* MQ, FName CN)
+	//消息队列
+	HFMsgQueue* MsgQueue;
+	//调用名字
+	FName CallName;
+	//方法ID
+	int32 FuncID;
+	//是否有效
+	TSharedPtr<bool> IsActived;
+	//注销方法
+	void UnRegister()
 	{
-
+		if (*IsActived.Get())
+		{
+			MsgQueue->UnRegisterFuncPort(CallName, FuncID);
+		}
+		*IsActived.Get() = false;
 	}
+
+	HFFuncHandle() { }
+
+	HFFuncHandle(HFMsgQueue* MQ, FName CN, int32 FI)
+	{
+		MsgQueue = MQ;
+		CallName = CN;
+		FuncID = FI;
+		IsActived = MakeShareable<bool>(new bool(true));
+	}
+
+	HFFuncHandle& operator=(const HFFuncHandle& other)
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+		MsgQueue = other.MsgQueue;
+		CallName = other.CallName;
+		FuncID = other.FuncID;
+		IsActived = other.IsActived;
+		return *this;
+	}
+
 };
 #pragma endregion
